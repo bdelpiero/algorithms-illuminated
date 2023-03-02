@@ -21,7 +21,7 @@ export function karatsuba(x: number, y: number): number {
   const abcd = pq - ac - bd;
 
   const n = digits % 2 !== 0 ? digits - 1 : digits;
-  return addTrailingZeros(ac, n) + addTrailingZeros(abcd, n / 2) + bd;
+  return addZerosToEnd(ac, n) + addZerosToEnd(abcd, n / 2) + bd;
 }
 
 // TODO: find better implementation using base 10 math
@@ -29,7 +29,8 @@ function splitNumbers(n: string, mid: number) {
   return [Number(n.slice(0, mid)), Number(n.slice(mid))];
 }
 
-function addTrailingZeros(n: number, digitsToAdd: number) {
+// find a better name
+function addZerosToEnd(n: number, digitsToAdd: number) {
   const totalDigits = n.toString().length + digitsToAdd;
   return Number(padRight(n, totalDigits));
 }
